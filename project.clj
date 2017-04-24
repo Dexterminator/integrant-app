@@ -21,7 +21,8 @@
          :target-path  "resources/public/css"}
 
   :profiles
-  {:dev {:dependencies   [[pjstadig/humane-test-output "0.8.1"]]
+  {:dev {:dependencies   [[pjstadig/humane-test-output "0.8.1"]
+                          [integrant/repl "0.2.0"]]
          :injections     [(require 'pjstadig.humane-test-output)
                           (pjstadig.humane-test-output/activate!)]
          :plugins        [[com.jakemccrary/lein-test-refresh "0.19.0"]

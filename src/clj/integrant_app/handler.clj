@@ -2,9 +2,7 @@
   (:require [compojure.core :refer [GET routes]]
             [compojure.route :refer [resources]]
             [ring.util.response :refer [resource-response]]
-            [integrant.core :as ig]
-            [integrant-app.handler]
-            [integrant-app.server]))
+            [integrant.core :as ig]))
 
 (defn app-routes [options]
   (routes

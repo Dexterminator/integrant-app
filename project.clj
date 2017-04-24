@@ -1,7 +1,10 @@
 (defproject integrant-app "0.1.0-SNAPSHOT"
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.9.521"]
-                 [io.aviso/pretty "0.1.33"]]
+                 [io.aviso/pretty "0.1.33"]
+                 [integrant "0.4.0"]
+                 [ring "1.5.1"]
+                 [compojure "1.5.1"]]
 
   :main ^:skip-aot integrant-app.core
   :target-path "target/%s"

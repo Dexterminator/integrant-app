@@ -4,7 +4,10 @@
                  [io.aviso/pretty "0.1.33"]
                  [integrant "0.4.0"]
                  [ring "1.5.1"]
-                 [compojure "1.5.1"]]
+                 [compojure "1.5.2"]
+                 [reagent "0.6.1"]
+                 [re-frame "0.9.2"]
+                 [binaryage/devtools "0.9.4"]]
 
   :main ^:skip-aot integrant-app.core
   :target-path "target/%s"
@@ -54,9 +57,6 @@
      :source-paths ["src/cljs" "test/cljs"]
      :compiler     {:output-to     "resources/public/js/compiled/test.js"
                     :main          integrant-app.doo-runner
-                    :optimizations :none}}
-    ]}
+                    :optimizations :none}}]}
 
-  :uberjar {:aot :all}
-
-  )
+  :uberjar {:aot :all})

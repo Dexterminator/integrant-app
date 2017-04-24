@@ -19,6 +19,8 @@ make clj-test-once
 ```
 
 #### ClojureScript
+Make sure [phantomjs](http://phantomjs.org/) is installed.
+
 Autorun (tests run as changes to files are detected):
 ```
 make cljs-test

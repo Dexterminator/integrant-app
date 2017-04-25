@@ -9,6 +9,4 @@
 
 (defn -main
   [& args]
-  (let [system (ig/init main-config)]
-    (println "System initialized")
-    (println system)))
+  (ig/init main-config))

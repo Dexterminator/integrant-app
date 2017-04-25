@@ -9,19 +9,19 @@
                  [re-frame "0.9.2"]
                  [binaryage/devtools "0.9.4"]]
 
-  :main ^:skip-aot integrant-app.core
+  :uberjar-name "integrant_app.jar"
+
+  :main integrant-app.core
   :target-path "target/%s"
 
   :source-paths ["src/clj" "src/cljs"]
   :test-paths ["test/clj" "test/cljs"]
 
-  :plugins [[lein-cljsbuild "1.1.3"]]
+  :plugins [[lein-cljsbuild "1.1.3"]
+            [lein-npm "0.6.2"]]
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"
                                     "test/js"]
-
-  :less {:source-paths ["less"]
-         :target-path  "resources/public/css"}
 
   :profiles
   {:dev {:dependencies   [[pjstadig/humane-test-output "0.8.1"]
@@ -34,6 +34,7 @@
                           (require 'spyscope.core)]
          :plugins        [[com.jakemccrary/lein-test-refresh "0.19.0"]
                           [lein-doo "0.1.7"]]
+         :preloads       ['devtools.preload]
          :test-refresh   {:quiet        true
                           :changes-only true}
          :source-paths   ["dev/src"]
@@ -64,4 +65,15 @@
                     :main          integrant-app.doo-runner
                     :optimizations :none}}]}
 
-  :uberjar {:aot :all})
+  :uberjar {:aot :all}
+
+  :prep-tasks [["npm" "run" "prod:stylus"] ["cljsbuild" "once" "min"] "compile"]
+
+  :aot [integrant-app.core]
+
+  :npm {:dependencies [[:stylus "0.54.5"]
+                       [:nib "1.1.2"]]
+        :package      {:scripts {:clean        "rm -rf resources/css/style.css",
+                                 :prod:stylus  "npm run clean && node_modules/.bin/stylus --include-css src/cljs/integrant_app/style/main.styl --out resources/public/css/style.css --compress --use ./node_modules/nib",
+                                 :build:stylus "npm run clean && node_modules/.bin/stylus --include-css src/cljs/integrant_app/style/main.styl --out resources/public/css/style.css --compress --use ./node_modules/nib --sourcemap --sourcemap-inline ",
+                                 :watch:stylus "npm run clean && node_modules/.bin/stylus --include-css src/cljs/integrant_app/style/main.styl --out resources/public/css/style.css --compress --use ./node_modules/nib --sourcemap --sourcemap-inline --watch"}}})

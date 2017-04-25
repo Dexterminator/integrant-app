@@ -1,6 +1,5 @@
 (ns integrant-app.core
-  (:require [devtools.core :as devtools]
-            [re-frame.core :as rf]
+  (:require [re-frame.core :as rf]
             [reagent.core :as r]
             [integrant-app.views :as views]
             [integrant-app.events]
@@ -11,8 +10,7 @@
 
 (defn dev-setup []
   (when debug?
-    (enable-console-print!)
-    (devtools/install!)))
+    (enable-console-print!)))
 
 (defn mount-root []
   (rf/clear-subscription-cache!)

@@ -59,3 +59,12 @@ Once:
 ```
 make cljs-test-once
 ```
+
+## Production Build
+
+Run:
+```
+make uberjar
+```
+
+See the `Procfile` for the production run command.

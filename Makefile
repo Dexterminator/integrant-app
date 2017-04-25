@@ -1,14 +1,29 @@
-clj-test:
-	lein test-refresh
+clean:
+	lein clean
 
-clj-test-once:
-	lein test
+npm-install:
+	lein npm install
 
-cljs-test:
-	lein doo phantom test
+stylusbuild: clean npm-install
+	lein npm run watch:stylus
 
-cljs-test-once:
-	lein doo phantom test once
+stylusbuild-once: clean npm-install
+	lein npm run build:stylus
 
 cljsbuild:
 	lein cljsbuild once
+
+uberjar:
+	lein uberjar
+
+clj-test: clean
+	lein test-refresh
+
+clj-test-once: clean
+	lein test
+
+cljs-test: clean
+	lein doo phantom test
+
+cljs-test-once: clean
+	lein doo phantom test once

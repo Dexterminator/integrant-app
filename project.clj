@@ -25,16 +25,21 @@
 
   :profiles
   {:dev {:dependencies   [[pjstadig/humane-test-output "0.8.1"]
-                          [integrant/repl "0.2.0"]]
+                          [integrant/repl "0.2.0"]
+                          [figwheel-sidecar "0.5.9"]
+                          [com.cemerick/piggieback "0.2.1"]
+                          [spyscope "0.1.5"]]
          :injections     [(require 'pjstadig.humane-test-output)
-                          (pjstadig.humane-test-output/activate!)]
+                          (pjstadig.humane-test-output/activate!)
+                          (require 'spyscope.core)]
          :plugins        [[com.jakemccrary/lein-test-refresh "0.19.0"]
                           [lein-doo "0.1.7"]]
          :test-refresh   {:quiet        true
                           :changes-only true}
          :source-paths   ["dev/src"]
          :resource-paths ["dev/resources"]
-         :repl-options   {:init-ns user}}}
+         :repl-options   {:init-ns          user
+                          :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
 
   :cljsbuild
   {:builds

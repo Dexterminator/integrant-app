@@ -20,6 +20,7 @@ You should now see:
 This means that the app is up and running, and that figwheel is listening to changes in your ClojureScript files.
 
 
+
 To start a ClojureScript REPL, run:
 ```
 => (cljs-repl)
@@ -27,6 +28,11 @@ To start a ClojureScript REPL, run:
 To go back to the regular Clojure REPL, type:
 ```
 => :cljs/quit
+```
+
+To restart the system and reload changed namespaces (in the regular Clojure REPL), run:
+```
+=> (reset)
 ```
 
 Check out the [Integrant](https://github.com/weavejester/integrant) README as well as

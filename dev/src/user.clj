@@ -7,7 +7,8 @@
             [integrant.repl.state :refer [config system]]
             [integrant.core :as ig]
             [figwheel-sidecar.repl-api :as ra]
-            [figwheel-dev]))
+            [figwheel-dev]
+            [pretty-dev]))
 
 (defn get-config []
   (merge main-config dev-config))
@@ -15,5 +16,4 @@
 (defn cljs-repl []
   (ra/cljs-repl))
 
-(pretty/install-pretty-exceptions)
 (integrant.repl/set-prep! get-config)

@@ -9,9 +9,7 @@
                  [re-frame "0.9.2"]
                  [binaryage/devtools "0.9.4"]]
 
-  :uberjar-name "integrant_app.jar"
-
-  :main integrant-app.core
+  :main ^:skip-aot integrant-app.core
   :target-path "target/%s"
 
   :source-paths ["src/clj" "src/cljs"]
@@ -20,27 +18,30 @@
   :plugins [[lein-cljsbuild "1.1.3"]
             [lein-npm "0.6.2"]]
 
-  :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"
-                                    "test/js"]
+  :clean-targets ^{:protect false} ["resources/public/js/compiled" "target" "test/js"]
 
   :profiles
-  {:dev {:dependencies   [[pjstadig/humane-test-output "0.8.1"]
-                          [integrant/repl "0.2.0"]
-                          [figwheel-sidecar "0.5.9"]
-                          [com.cemerick/piggieback "0.2.1"]
-                          [spyscope "0.1.5"]]
-         :injections     [(require 'pjstadig.humane-test-output)
-                          (pjstadig.humane-test-output/activate!)
-                          (require 'spyscope.core)]
-         :plugins        [[com.jakemccrary/lein-test-refresh "0.19.0"]
-                          [lein-doo "0.1.7"]]
-         :preloads       ['devtools.preload]
-         :test-refresh   {:quiet        true
-                          :changes-only true}
-         :source-paths   ["dev/src"]
-         :resource-paths ["dev/resources"]
-         :repl-options   {:init-ns          user
-                          :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
+  {:dev     {:dependencies   [[pjstadig/humane-test-output "0.8.1"]
+                              [integrant/repl "0.2.0"]
+                              [figwheel-sidecar "0.5.9"]
+                              [com.cemerick/piggieback "0.2.1"]
+                              [spyscope "0.1.5"]]
+             :injections     [(require 'pjstadig.humane-test-output)
+                              (pjstadig.humane-test-output/activate!)
+                              (require 'spyscope.core)]
+             :plugins        [[com.jakemccrary/lein-test-refresh "0.19.0"]
+                              [lein-doo "0.1.7"]]
+             :preloads       ['devtools.preload]
+             :test-refresh   {:quiet        true
+                              :changes-only true}
+             :source-paths   ["dev/src"]
+             :resource-paths ["dev/resources"]
+             :repl-options   {:init-ns          user
+                              :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}
+   :uberjar {:aot          :all
+             :omit-source  true
+             :uberjar-name "integrant-app.jar"
+             :prep-tasks   [["npm" "run" "prod:stylus"] ["cljsbuild" "once" "min"] "compile"]}}
 
   :cljsbuild
   {:builds
@@ -65,11 +66,6 @@
                     :main          integrant-app.doo-runner
                     :optimizations :none}}]}
 
-  :uberjar {:aot :all}
-
-  :prep-tasks [["npm" "run" "prod:stylus"] ["cljsbuild" "once" "min"] "compile"]
-
-  :aot [integrant-app.core]
 
   :npm {:dependencies [[:stylus "0.54.5"]
                        [:nib "1.1.2"]]

@@ -1,7 +1,10 @@
+remove-package-json:
+	-rm -f package.json
+
 clean:
 	lein clean
 
-npm-install:
+npm-install: remove-package-json
 	lein npm install
 
 stylusbuild: clean npm-install
@@ -13,7 +16,7 @@ stylusbuild-once: clean npm-install
 cljsbuild:
 	lein cljsbuild once
 
-uberjar:
+uberjar: remove-package-json
 	lein uberjar
 
 clj-test: clean

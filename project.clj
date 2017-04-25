@@ -69,7 +69,7 @@
 
   :npm {:dependencies [[:stylus "0.54.5"]
                        [:nib "1.1.2"]]
-        :package      {:scripts {:clean        "rm -rf resources/css/style.css",
+        :package      {:scripts {:clean        "rm -rf resources/public/css && mkdir -p resources/public/css",
                                  :prod:stylus  "npm run clean && node_modules/.bin/stylus --include-css src/cljs/integrant_app/style/main.styl --out resources/public/css/style.css --compress --use ./node_modules/nib",
                                  :build:stylus "npm run clean && node_modules/.bin/stylus --include-css src/cljs/integrant_app/style/main.styl --out resources/public/css/style.css --compress --use ./node_modules/nib --sourcemap --sourcemap-inline ",
                                  :watch:stylus "npm run clean && node_modules/.bin/stylus --include-css src/cljs/integrant_app/style/main.styl --out resources/public/css/style.css --compress --use ./node_modules/nib --sourcemap --sourcemap-inline --watch"}}})

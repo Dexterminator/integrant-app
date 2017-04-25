@@ -36,7 +36,7 @@ To restart the system and reload changed namespaces (in the regular Clojure REPL
 ```
 
 Check out the [Integrant](https://github.com/weavejester/integrant) README as well as
-[Inegrant-REPL](https://github.com/weavejester/integrant-repl) for more information on how to
+[Integrant-REPL](https://github.com/weavejester/integrant-repl) for more information on how to
 interact with the system in development mode.
 
 

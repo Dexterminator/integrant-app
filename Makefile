@@ -1,3 +1,8 @@
+.PHONY: default all remove-package-json clean npm-install stylusbuild stylusbuild-once cljsbuild uberjar clj-test clj-test-once cljs-test cljs-test-once
+
+default: uberjar
+all: uberjar
+
 remove-package-json:
 	-rm -f package.json
 

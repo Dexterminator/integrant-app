@@ -77,7 +77,7 @@ make cljs-test-once
 
 Run:
 ```
-make uberjar
+make
 ```
 
 See the `Procfile` for the production run command.

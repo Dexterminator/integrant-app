@@ -39,6 +39,13 @@ Check out the [Integrant](https://github.com/weavejester/integrant) README as we
 [Integrant-REPL](https://github.com/weavejester/integrant-repl) for more information on how to
 interact with the system in development mode.
 
+### Build CSS
+
+In order to start the stylus autobuilder, run:
+```
+make stylusbuild
+```
+
 
 ### Run tests:
 
